@@ -94,7 +94,7 @@ SLA считается некорректно из-за неправильног
 * Сложнее обнаружить пропавшие хосты
 
 #
-6. Какие из ниже перечисленных систем относятся к push модели, а какие к pull? А может есть гибридные?
+> 6. Какие из ниже перечисленных систем относятся к push модели, а какие к pull? А может есть гибридные?
 
     - Prometheus - Pull (при использовании [Pushgateway](https://prometheus.io/docs/practices/pushing/) будет гибрид)
     - TICK - Push
@@ -111,43 +111,32 @@ SLA считается некорректно из-за неправильног
 
 
 #
-8. Перейдите в веб-интерфейс Chronograf (http://localhost:8888) и откройте вкладку Data explorer.
-        
-    - Нажмите на кнопку Add a query
-    - Изучите вывод интерфейса и выберите БД telegraf.autogen
-    - В `measurments` выберите cpu->host->telegraf-getting-started, а в `fields` выберите usage_system. Внизу появится график утилизации cpu.
-    - Вверху вы можете увидеть запрос, аналогичный SQL-синтаксису. Поэкспериментируйте с запросом, попробуйте изменить группировку и интервал наблюдений.
+> 8. Перейдите в веб-интерфейс Chronograf (http://localhost:8888) и откройте вкладку Data explorer.
+>         
+>     - Нажмите на кнопку Add a query
+>     - Изучите вывод интерфейса и выберите БД telegraf.autogen
+>     - В `measurments` выберите cpu->host->telegraf-getting-started, а в `fields` выберите usage_system. Внизу появится график утилизации cpu.
+>     - Вверху вы можете увидеть запрос, аналогичный SQL-синтаксису. Поэкспериментируйте с запросом, попробуйте изменить группировку и интервал наблюдений.
+> 
+> Для выполнения задания приведите скриншот с отображением метрик утилизации cpu из веб-интерфейса.
 
-Для выполнения задания приведите скриншот с отображением метрик утилизации cpu из веб-интерфейса.
+<img width="2560" height="1229" alt="image" src="https://github.com/user-attachments/assets/bbf95845-f03f-419d-aec5-52bc99cfa41e" />
+
 #
-9. Изучите список [telegraf inputs](https://github.com/influxdata/telegraf/tree/master/plugins/inputs). 
-Добавьте в конфигурацию telegraf следующий плагин - [docker](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/docker):
-```
-[[inputs.docker]]
-  endpoint = "unix:///var/run/docker.sock"
-```
+> 9. Изучите список [telegraf inputs](https://github.com/influxdata/telegraf/tree/master/plugins/inputs). 
+> Добавьте в конфигурацию telegraf следующий плагин - [docker](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/docker):
+> ```
+> [[inputs.docker]]
+>   endpoint = "unix:///var/run/docker.sock"
+> ```
+> 
+> После настройке перезапустите telegraf, обновите веб интерфейс и приведите скриншотом список `measurments` в 
+> веб-интерфейсе базы telegraf.autogen . Там должны появиться метрики, связанные с docker.
 
-Дополнительно вам может потребоваться донастройка контейнера telegraf в `docker-compose.yml` дополнительного volume и 
-режима privileged:
-```
-  telegraf:
-    image: telegraf:1.4.0
-    privileged: true
-    volumes:
-      - ./etc/telegraf.conf:/etc/telegraf/telegraf.conf:Z
-      - /var/run/docker.sock:/var/run/docker.sock:Z
-    links:
-      - influxdb
-    ports:
-      - "8092:8092/udp"
-      - "8094:8094"
-      - "8125:8125/udp"
-```
+Метрики докера появились:
 
-После настройке перезапустите telegraf, обновите веб интерфейс и приведите скриншотом список `measurments` в 
-веб-интерфейсе базы telegraf.autogen . Там должны появиться метрики, связанные с docker.
+<img width="2560" height="1229" alt="image" src="https://github.com/user-attachments/assets/e93db90f-fc32-4d7c-b600-c5c63ae93d09" />
 
-Факультативно можете изучить какие метрики собирает telegraf после выполнения данного задания.
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
 
