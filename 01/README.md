@@ -96,19 +96,20 @@ SLA считается некорректно из-за неправильног
 #
 6. Какие из ниже перечисленных систем относятся к push модели, а какие к pull? А может есть гибридные?
 
-    - Prometheus 
-    - TICK
-    - Zabbix
-    - VictoriaMetrics
-    - Nagios
+    - Prometheus - Pull (при использовании [Pushgateway](https://prometheus.io/docs/practices/pushing/) будет гибрид)
+    - TICK - Push
+    - Zabbix - Гибрид (agent push + server pull)
+    - VictoriaMetrics - Гибрид
+    - Nagios - Pull
 #
-7. Склонируйте себе [репозиторий](https://github.com/influxdata/sandbox/tree/master) и запустите TICK-стэк, 
+> 7. Склонируйте себе [репозиторий](https://github.com/influxdata/sandbox/tree/master) и запустите TICK-стэк, 
 используя технологии docker и docker-compose.
+> 
+> В виде решения на это упражнение приведите скриншот веб-интерфейса ПО chronograf (`http://localhost:8888`). 
 
-В виде решения на это упражнение приведите скриншот веб-интерфейса ПО chronograf (`http://localhost:8888`). 
+<img width="2560" height="1380" alt="image" src="https://github.com/user-attachments/assets/baecdd23-95de-4b4e-a7a2-4bcda27857a4" />
 
-P.S.: если при запуске некоторые контейнеры будут падать с ошибкой - проставьте им режим `Z`, например
-`./data:/var/lib:Z`
+
 #
 8. Перейдите в веб-интерфейс Chronograf (http://localhost:8888) и откройте вкладку Data explorer.
         
