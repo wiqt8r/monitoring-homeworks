@@ -72,7 +72,8 @@ Dashboard:
 
 искусственно нагрузил память, алерт в телегу пришёл:
 
-<img width="560" height="233" alt="image" src="https://github.com/user-attachments/assets/85bee440-6eaf-497a-ba09-9c4a19a644be" />
+<img width="564" height="370" alt="image" src="https://github.com/user-attachments/assets/67e76464-4d2e-4ac7-91c3-fa5c3c4e9904" />
+
 
 
 ## Задание 4
