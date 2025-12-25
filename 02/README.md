@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 14 «Средство визуализации Grafana»
+<img width="1565" height="974" alt="image" src="https://github.com/user-attachments/assets/ff8715a1-60af-449c-b773-e64a4cef53f7" /># Домашнее задание к занятию 14 «Средство визуализации Grafana»
 
 ## Задание повышенной сложности
 
@@ -21,27 +21,48 @@
 
 ### Задание 1
 
-1. Используя директорию [help](./help) внутри этого домашнего задания, запустите связку prometheus-grafana.
-1. Зайдите в веб-интерфейс grafana, используя авторизационные данные, указанные в манифесте docker-compose.
-1. Подключите поднятый вами prometheus, как источник данных.
-1. Решение домашнего задания — скриншот веб-интерфейса grafana со списком подключенных Datasource.
+скриншот веб-интерфейса grafana со списком подключенных Datasource.
+
+<img width="1565" height="974" alt="image" src="https://github.com/user-attachments/assets/c9ec5d0f-1366-4d13-989c-3f234221ca31" />
+
 
 ## Задание 2
 
-Изучите самостоятельно ресурсы:
+- утилизация CPU для nodeexporter (в процентах, 100-idle):
+```
+100 - (avg by (instance) (rate(node_cpu_seconds_total{job="nodeexporter",mode="idle"}[5m])) * 100)
+```
+- CPULA 1/5/15 - три запроса на одной панельке:
+```
+node_load1{job="nodeexporter"}
+node_load5{job="nodeexporter"}
+node_load15{job="nodeexporter"}
+```
+- количество свободной оперативной памяти:
+```
+node_memory_MemAvailable_bytes{job="nodeexporter"}
+```
+- количество места на файловой системе:
+```
+(
+  node_filesystem_avail_bytes{
+    job="nodeexporter",
+    fstype!~"tmpfs|overlay|squashfs|ramfs",
+    mountpoint!~"/run/credentials/.*"
+  }
+/
+  node_filesystem_size_bytes{
+    job="nodeexporter",
+    fstype!~"tmpfs|overlay|squashfs|ramfs",
+    mountpoint!~"/run/credentials/.*"
+  }
+) * 100
+```
 
-1. [PromQL tutorial for beginners and humans](https://valyala.medium.com/promql-tutorial-for-beginners-9ab455142085).
-1. [Understanding Machine CPU usage](https://www.robustperception.io/understanding-machine-cpu-usage).
-1. [Introduction to PromQL, the Prometheus query language](https://grafana.com/blog/2020/02/04/introduction-to-promql-the-prometheus-query-language/).
+Dashboard:
 
-Создайте Dashboard и в ней создайте Panels:
+<img width="2560" height="1229" alt="image" src="https://github.com/user-attachments/assets/09008764-993b-4bfa-9c0d-14cab700d3f2" />
 
-- утилизация CPU для nodeexporter (в процентах, 100-idle);
-- CPULA 1/5/15;
-- количество свободной оперативной памяти;
-- количество места на файловой системе.
-
-Для решения этого задания приведите promql-запросы для выдачи этих метрик, а также скриншот получившейся Dashboard.
 
 ## Задание 3
 
