@@ -68,7 +68,11 @@ Dashboard:
 
 Пришлось поменять визуальное отображение на Graph, потому что графана не давала создавать алерты для других визуализаций:
 
-<img width="1327" height="1038" alt="image" src="https://github.com/user-attachments/assets/d7f6ee91-a3f4-460e-99dd-1eb90af79366" />
+<img width="1329" height="1039" alt="image" src="https://github.com/user-attachments/assets/8254921a-2f27-40a2-99eb-16d85057ed9f" />
+
+искусственно нагрузил память, алерт в телегу пришёл:
+
+<img width="560" height="233" alt="image" src="https://github.com/user-attachments/assets/85bee440-6eaf-497a-ba09-9c4a19a644be" />
 
 
 ## Задание 4
