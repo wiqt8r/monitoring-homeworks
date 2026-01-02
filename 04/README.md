@@ -3,7 +3,9 @@
 ## Задание 1
 
 Sentry.io душит санкциями и возвращает 403 при попытке доступа, причём даже через сами-знаете-что. Пришлось сделать виндовую машину на AWS и зайти оттуда.
+
 Скриншот меню Projects:
+
 <img width="2558" height="1341" alt="image" src="https://github.com/user-attachments/assets/d8ae49d2-a5fa-4fa3-a1c6-e19f2b0aa789" />
 
 
